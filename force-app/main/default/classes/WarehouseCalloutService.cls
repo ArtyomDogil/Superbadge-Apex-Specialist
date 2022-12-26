@@ -1,7 +1,6 @@
-public with sharing class WarehouseCalloutService implements Queueable {
+public with sharing class WarehouseCalloutService implements Queueable, Database.AllowsCallouts{
     private static final String WAREHOUSE_URL = 'https://th-superbadge-apex.herokuapp.com/equipment';
-    @future(callout=true)
-    public static void syncEquipmentFromWarehouse(){
+    public static void execute(QueueableContext context){
         Http http = new Http();
         HttpRequest req = new HttpRequest();
         req.setEndpoint(WAREHOUSE_URL);
@@ -27,8 +26,5 @@ public with sharing class WarehouseCalloutService implements Queueable {
                 upsert listEquipmentFromWarehouse;
             }
         }
-    }
-    public static void execute(QueueableContext context){
-        syncEquipmentFromWarehouse();
     }
 }
