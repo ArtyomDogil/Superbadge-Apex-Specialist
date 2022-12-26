@@ -1,3 +1,5 @@
-public with sharing class WarehouseSyncSchedule {
-    // implement scheduled code here
+global class WarehouseSyncSchedule implements Schedulable {
+    global void execute(System.SchedulableContext context){
+        WarehouseCalloutService.syncEquipmentFromWarehouse();
+    }
 }
