@@ -42,9 +42,9 @@ public with sharing class MaintenanceRequestHelper {
                 );
                 if (mapMaintCycles.containskey(cmr.Id)){
                     nmr.Date_Due__c = Date.today().addDays((Integer) mapMaintCycles.get(cmr.Id));
-                } else {
+                } /*else {
                     nmr.Date_Due__c = Date.today().addDays((Integer) cmr.Equipment__r.Maintenance_Cycle__c);
-                }
+                }*/
                 listNewMaintRequests.add(nmr);
             }
             insert listNewMaintRequests;
