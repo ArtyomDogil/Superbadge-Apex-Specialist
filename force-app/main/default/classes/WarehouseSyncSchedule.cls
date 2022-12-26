@@ -1,5 +1,5 @@
-global class WarehouseSyncSchedule implements Schedulable {
+global with sharing class WarehouseSyncSchedule implements Schedulable {
     global void execute(System.SchedulableContext context){
-        WarehouseCalloutService.syncEquipmentFromWarehouse();
+        System.enqueueJob(new WarehouseCalloutService());
     }
 }
