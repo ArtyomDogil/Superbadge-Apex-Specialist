@@ -1,5 +1,11 @@
-@IsTest
+@isTest
 private class WarehouseCalloutServiceTest {
-    // implement your mock callout test here
-
+    @isTest
+    static void testCallout(){
+        Test.startTest();
+        Test.setMock(HTTPCalloutMock.class, new WarehouseCalloutServiceMock());
+        System.enqueueJob(new WarehouseCalloutService());
+        Test.stopTest();
+        System.assertEquals(1, [SELECT count() FROM Product2]);
+    }
 }
